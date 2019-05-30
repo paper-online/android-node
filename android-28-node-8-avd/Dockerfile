@@ -8,5 +8,6 @@ RUN ${ANDROID_HOME}/tools/bin/sdkmanager "emulator" "system-images;android-${AND
     ${ANDROID_HOME}/tools/bin/avdmanager create avd -n pixel -d pixel -k "system-images;android-${ANDROID_TARGET_SDK_VERSION};google_apis_playstore;x86_64"
 
 # start adb and connect virtual device
+# https://androidstudio.googleblog.com/2019/02/emulator-2818-canary.html
 CMD ${ANDROID_HOME}/platform-tools/adb start-server && \
-    ${ANDROID_HOME}/emulator/emulator-headless -avd pixel -no-audio -no-accel -no-window -gpu off
+    ${ANDROID_HOME}/emulator/emulator-headless -avd pixel -no-audio -no-accel -no-window -gpu swiftshader_indirect
