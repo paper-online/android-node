@@ -13,6 +13,7 @@ ARG ANDROID_BUILD_TOOLS_VERSION=24.0.3
 ARG ANDROID_TARGET_SDK_VERSION=24
 
 # set env vars
+ENV ANDROID_TARGET_SDK_VERSION ${ANDROID_TARGET_SDK_VERSION}
 ENV ANDROID_HOME /opt/android-sdk
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
@@ -21,9 +22,6 @@ ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/emulator:
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # workaround for issue https://issuetracker.google.com/issues/37137213
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
-
-# set exposed port for adb
-EXPOSE 5037
 
 # support multiarch: i386 architecture
 RUN dpkg --add-architecture i386 && \

@@ -1,6 +1,7 @@
 FROM paperonline/android-node:android-24-node-8
 
-ARG ANDROID_TARGET_SDK_VERSION=24
+# set exposed port for adb
+EXPOSE 5037
 
 # create virtual device
 RUN ${ANDROID_HOME}/tools/bin/sdkmanager "emulator" "system-images;android-${ANDROID_TARGET_SDK_VERSION};default;armeabi-v7a" && \
