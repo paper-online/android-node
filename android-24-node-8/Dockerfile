@@ -58,12 +58,5 @@ RUN dpkg --add-architecture i386 && \
     yes | ${ANDROID_HOME}/tools/bin/sdkmanager "--licenses" && \
     ${ANDROID_HOME}/tools/bin/sdkmanager "--update" && \
     ${ANDROID_HOME}/tools/bin/sdkmanager "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" "platforms;android-${ANDROID_TARGET_SDK_VERSION}" && \
-    # create virtual device
-    ${ANDROID_HOME}/tools/bin/sdkmanager "emulator" "system-images;android-${ANDROID_TARGET_SDK_VERSION};default;armeabi-v7a" && \
-    ${ANDROID_HOME}/tools/bin/avdmanager create avd -n pixel -d pixel -k "system-images;android-${ANDROID_TARGET_SDK_VERSION};default;armeabi-v7a" && \
     # clear out tmp directory
     rm -rf /tmp/*
-
-# start adb and connect virtual device
-CMD ${ANDROID_HOME}/platform-tools/adb start-server && \
-    ${ANDROID_HOME}/tools/emulator -avd pixel -noaudio -no-window
