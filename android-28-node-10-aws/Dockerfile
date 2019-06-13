@@ -4,6 +4,8 @@ FROM paperonline/android-node:android-28-node-10
 RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     # update apt-get
     apt-get update -y && \
+    # install zip
+    apt-get install -y --no-install-recommends zip && \
     # install jq
     apt-get install -y --no-install-recommends jq && \
     # install python
