@@ -16,3 +16,5 @@ RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone &
     # clear out caches
     rm -rf /tmp/* && \
     rm -rf /var/lib/apt/lists/*
+
+USER node

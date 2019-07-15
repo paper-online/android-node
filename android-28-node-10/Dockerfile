@@ -32,6 +32,9 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y --no-install-recommends git wget unzip && \
     apt-get install -y --no-install-recommends openjdk-8-jdk && \
     apt-get install -y --no-install-recommends qt5-default && \
+    # add node user
+    addgroup --gid 1000 node && \
+    adduser --uid 1000 --gid 1000 --shell /bin/sh node && \
     # install node
     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update -y && \
@@ -61,3 +64,7 @@ RUN dpkg --add-architecture i386 && \
     # clear out caches
     rm -rf /tmp/* && \
     rm -rf /var/lib/apt/lists/*
+
+# set permissions on /opt
+RUN mkdir -p /opt/atlassian/pipelines/agent/build && \
+    chown -R node:node /opt
